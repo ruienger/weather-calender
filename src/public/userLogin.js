@@ -4,8 +4,11 @@ import cookie from '@/public/cookie'
 
 
 function login(userFrom){
-    axios.post('/user/login',userFrom,(res)={})
+    axios.post('/user/login',userFrom,(res)=>{
+        
+    })
     .then((result) => {
+        
         cookie.setToken(result.data.token)
 
     }).catch((err) => {

@@ -7,8 +7,9 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-    computed:{
-        ...mapState('user',['userInfo'])
+    name: 'showInfo',
+    props:{
+        userInfo:{}
     }
 }
 </script>

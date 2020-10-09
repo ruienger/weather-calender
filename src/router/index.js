@@ -40,11 +40,11 @@ const routes = [
     name: '用户名',
     params: { iconClass:'icon-icon-test2' },
     component: () => import('../views/user.vue'),
-    // children:[
-    //   { path:'/login', name:'login', component: () => import('../components/login.vue') },
-    //   { path:'/showInfo', component: () => import('../components/showInfo.vue') },
+    children:[
+      { path:'/login', name:'login', component: () => import('../components/login.vue') },
+      { path:'/showInfo', name:'showInfo', component: () => import('../components/showInfo.vue') },
 
-    // ]
+    ]
     
   },
   {

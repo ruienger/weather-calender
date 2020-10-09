@@ -4,7 +4,7 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <weatherShown :withCalander="false" :data="weather"></weatherShown>
-    <slicedCalender :calenderInfo="weatherPre"></slicedCalender>
+    <slicedCalender :location="location"></slicedCalender>
     {{ location }}
     {{ weather }}
   </div>
@@ -12,35 +12,35 @@
 
 <script>
 // @ is an alias to /src
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 import state from '@/store/index.js'
 import axios from 'axios'
 import headNavBar from '@/components/headNavBar.vue'
 import weatherShown from '@/components/weatherShown.vue'
 import getWeatherInfo from '@/public/weatherInfo.js'
 import slicedCalender from '@/components/slicedCalender.vue'
-import getWeatherPreInfo from '@/public/weatherPre'
 
 export default {
   name: 'Home',
   data(){
     return{
-      location: '苏州',
     }
   },
   computed: {
-    ...mapState('weather',['weather','weatherPre'])
+    ...mapState('weather',['weather','weatherPre']),
+    ...mapState('location',['location'])
   },
   components: {
     headNavBar,weatherShown,slicedCalender
   },
   state,
   methods:{
-    ...mapActions('weather',['getWeather'])
+    ...mapActions('weather',['getWeather']),
+    ...mapMutations('location',['SET_LOCATION'])
   },
-  mounted(){
+  created(){
+    this.SET_LOCATION('苏州')
     getWeatherInfo(this.location)
-    getWeatherPreInfo(this.location)
   }
 }
 </script>

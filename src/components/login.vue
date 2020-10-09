@@ -1,7 +1,7 @@
 <template>
   <div>
-      <input type="text" :value="userInfo.username">
-      <input type="text" :value="userInfo.password">
+      <input type="text" :value="userFrom.username">
+      <input type="text" :value="userFrom.password">
       <button @click.prevent="login" >登录</button>
   </div>
 </template>
@@ -22,7 +22,8 @@ export default {
     },
     methods:{
         login(){
-            login(userFrom)
+            login(this.userFrom)
+            this.$emit('handleClick')
         }
     }
 }

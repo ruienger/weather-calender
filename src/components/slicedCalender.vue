@@ -19,7 +19,7 @@
     </div>
 </template>
 <script>
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 import getWeatherPreInfo from '@/public/weatherPre'
 import notes from '@/components/notes.vue'
 
@@ -27,20 +27,18 @@ export default {
     name:'slicedCalender',
     data(){
         return {
-            date:{}
+            date:{},
+            
         }
     },
     computed:{
         ...mapState('weather',['weatherPre'])
     },
-    beforeCreated(){
-        getWeatherPreInfo()
-    },
-    methods:{
-        ...mapMutations('calender',['SET_SLICEDCALENDERARR'])
+    created(){
+        getWeatherPreInfo(this.location)
     },
     props:{
-        calenderInfo:{}
+        location:''
     },
     components:{
         notes

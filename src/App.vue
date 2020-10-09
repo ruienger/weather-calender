@@ -13,9 +13,6 @@ export default {
   data(){
     return {}
   },
-  computed:{},
-  created:{},
-  methods:{},
   components:{sideBar},
 }
 </script>
