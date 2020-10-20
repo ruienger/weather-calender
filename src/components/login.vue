@@ -14,9 +14,9 @@ export default {
     data(){
         return{
             userFrom:{
-                username:"admin",
+                username:"jerry",
                 password:"123321",
-                type:"manager"
+                type:"customer"
             }
         }
     },

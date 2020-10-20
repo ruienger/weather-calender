@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :style="'background-color: ' + backgroundcolor + ';'">
     
       <sideBar headIconClass="icon-icon_threeline_fill"></sideBar>
     
@@ -9,11 +9,25 @@
 
 <script>
 import sideBar from '@/components/sideBar.vue'
+import getColor from '@/public/backgroundColor'
+import { mapState } from 'vuex'
+
 export default {
   data(){
-    return {}
+    return {
+
+    }
   },
   components:{sideBar},
+  computed:{
+    ...mapState('weather',['weather']),
+    backgroundcolor(){
+      return getColor(this.weather.weather.now.text)
+    }
+  },
+  methods:{
+    
+  }
 }
 </script>
 <style>
@@ -26,10 +40,13 @@ html,body,#app{
     height: 100%;
 }
 #app{
-    background-color:rgb(67, 116, 189);
+    background-image: linear-gradient(#6ba5af91,#30444dc5);
     background-size: 100% 100%;
+    transition: all 5s;
 }
 .router_view{
-    padding-left:50px
+    height: 100%;
+    padding-left:50px;
+    overflow: scroll;
 }
 </style>

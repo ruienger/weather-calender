@@ -3,9 +3,11 @@
     <headNavBar title="主页"></headNavBar>
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <weatherShown :withCalander="false" :data="weather"></weatherShown>
+    <div class="location">{{ location }}</div>
+    <weatherShown :data="weather"></weatherShown>
     <slicedCalender :location="location"></slicedCalender>
-    {{ location }}
+    <weatherDetail :data="weather"></weatherDetail>
+    
     {{ weather }}
   </div>
 </template>
@@ -19,6 +21,8 @@ import headNavBar from '@/components/headNavBar.vue'
 import weatherShown from '@/components/weatherShown.vue'
 import getWeatherInfo from '@/public/weatherInfo.js'
 import slicedCalender from '@/components/slicedCalender.vue'
+import getLocalCity from '@/public/localCity'
+import weatherDetail from '@/components/weatherDetail.vue'
 
 export default {
   name: 'Home',
@@ -27,11 +31,11 @@ export default {
     }
   },
   computed: {
-    ...mapState('weather',['weather','weatherPre']),
+    ...mapState('weather',['weather']),
     ...mapState('location',['location'])
   },
   components: {
-    headNavBar,weatherShown,slicedCalender
+    headNavBar,weatherShown,slicedCalender,weatherDetail
   },
   state,
   methods:{
@@ -39,7 +43,7 @@ export default {
     ...mapMutations('location',['SET_LOCATION'])
   },
   created(){
-    this.SET_LOCATION('苏州')
+    getLocalCity()
     getWeatherInfo(this.location)
   }
 }
@@ -48,5 +52,11 @@ export default {
 <style scoped>
 .home{
   color: white;
+  /* background-color: red; */
+}
+.location{
+  text-align: center;
+  padding-top: 1%;
+  font-size: 19px;
 }
 </style>

@@ -1,39 +1,49 @@
 <template>
   <div class="root">
-      <div class="apiInfo">
-        <span>上次更新时间:{{ data.weather.updateTime }}</span>
-        <span>数据来源: <a :href="data.weather.fxLink">和风天气</a> </span>
-      </div>
+      
       <div class="temp">
-        <span><img :src="'../../../WeatherIcon/weather-icon-S1/color-128/'+data.weather.now.icon+'100.png'" alt=""></span>
+        <span><img :src='file' alt=""></span>
         <span>{{data.weather.now.temp}}</span>
-        <span style="font-size:17px">  C</span>
+        <span> &#8451;</span>
+        
       </div>
       <div>
-        <span><img :src="'../../../WeatherIcon/weather-icon-S1/color-128/'+data.weather.now.icon+'100.png'" alt=""></span>
-        <span>{{data.weather.now.text}}</span>
+        <span class="text">{{data.weather.now.text}}</span>
+        <div>体感温度:{{data.weather.now.feelsLike}}&#8451;</div>
       </div>
-      <div>
-        <span><img :src="'../../../WeatherIcon/weather-icon-S1/color-128/'+data.weather.now.icon+'100.png'" alt=""></span>
-        <span>风速: {{data.weather.now.windSpeed}} km/h {{data.weather.now.windDir}} {{data.weather.now.windScale}}级</span>
-      </div>
-      <div>
-        <span><img :src="'../../../WeatherIcon/weather-icon-S1/color-128/'+data.weather.now.icon+'100.png'" alt=""></span>
-        <span>相对湿度: {{data.weather.now.humidity}}</span>
+      <div class="apiInfo">
+        <span>上次更新时间:{{ lastUpdateTime }}</span>
+        <span>数据来源: <a :href="data.weather.fxLink">和风天气</a> </span>
       </div>
   </div>
 </template>
 
 <script>
-
+import moment from 'moment'
 
 export default {
     data(){
-        return {}
+        return {
+          imgDir: 'image/',
+          imgEXTname: '.png'
+        }
     },
     props:{
-        data:{},
-        withCalander:true
+        data:{
+          weather:{
+            now: {
+              icon: '100'
+            }
+          }
+        }
+    },
+    computed:{
+      file(){
+        return this.imgDir + this.data.weather.now.icon + this.imgEXTname
+      },
+      lastUpdateTime(){
+        return moment(this.data.weather.updateTime).fromNow()
+      }
     }
 }
 </script>
@@ -42,11 +52,13 @@ export default {
 .root{
     color: #eee;
     text-align: center;
+    padding-top: 20px;
+    width: 90%;
+    margin: 0 auto;
 }
 .apiInfo{
     display: flex;
     justify-content: space-between;
-    padding: 0 1em;
     font-size: 14px;
 }
 .temp{
@@ -60,5 +72,11 @@ export default {
     height: 20px;
     border-radius: 10px;
     border: 1px solid #eee;
+}
+.temp>span:last-child{
+   font-size:40px
+}
+.text{
+  font-size: 27px;
 }
 </style>

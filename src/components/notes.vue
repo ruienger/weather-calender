@@ -1,10 +1,16 @@
 <template>
-  <div>备忘录</div>
+  <div>{{ fxDate }}
+    <div>NOTES</div>
+  </div>
+  
 </template>
 
 <script>
 export default {
-
+  name: 'notes',
+  porps:{
+    fxDate: ''
+  }
 }
 </script>
 
