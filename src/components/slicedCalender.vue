@@ -1,4 +1,5 @@
 <template>
+<transition appear name="flow-up-delay">
     <div class="calender">
         
         <table>
@@ -32,29 +33,46 @@
                         <div>风向风力：{{item.windDirDay}}
                         {{item.windScaleDay}}级</div>
                         <div>
-                            <div class="add-note-btn" @click="addNotes(item.fxDate)"></div>
+                            <div class="add-note-btn" @click="showMoudal(item.fxDate)" :style="'transform: rotate('+angle+'deg)'"></div>
                         </div>
                     </div>
-                    <notes fxDate="item.fxDate"></notes>
+                    <notes :fxDate="item.fxDate" @note-clicked="updateHandler($event,item.fxDate)"></notes>
                     </div>
                 </tr>
                 
         </table>
         
+            <notesMoudal v-show="isShown" class="moudal" 
+                @close-clicked='hideMoudal' :fxDate="fxDate"
+                :notes="notes"
+                @ok-clicked='addOrUpdateHandler($event)'
+                @delete-clicked='deleteHandler($event)'
+                >
+            </notesMoudal>
     </div>
+</transition>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import getWeatherPreInfo from '@/public/weatherPre'
 import notes from '@/components/notes.vue'
 import moment from 'moment'
+import notesMoudal from '@/components/notesMoudal.vue'
 
 export default {
     name:'slicedCalender',
     data(){
         return {
             date:{},
-            shown: false
+            isShown: false,
+            angle: 0,
+            fxDate: '',
+            notes:{
+                content: "",
+                commentTime: 1582613734000,
+                cusId: '',
+                status: ""
+            },
         }
     },
     computed:{
@@ -68,15 +86,35 @@ export default {
         location:''
     },
     components:{
-        notes
+        notes,notesMoudal
     },
     methods: {
+        ...mapActions('notes',['addOrUpdateNotes','deleteNotes']),
        dateInItems(date){
             return moment(date).format('MMM Do')
         },
-        addNotes(fxDate){
+        showMoudal(fxDate){
+            this.isShown = true
+            this.fxDate = fxDate
+            // this.addOrUpdateNotes()
+        },
+        hideMoudal(){
+            this.isShown = false
+            
+        },
+        addOrUpdateHandler(data){
+            this.addOrUpdateNotes(data)
+            this.hideMoudal()
+        },
+        updateHandler(data,fxDate){
+            this.notes = data
+            this.showMoudal(fxDate)
 
-        } 
+        },
+        deleteHandler(data){
+            console.log('hello')
+            // this.deleteNotes(data)
+        }
     }
 }
 </script>
@@ -160,4 +198,12 @@ export default {
     text-align: center;
     line-height: 10px;
 }
+.flow-up-delay-enter-active, .flow-up-delay-leave-active {
+  transition: all .4s .3s;
+}
+.flow-up-delay-enter{
+  transform: translateY(50px);
+  opacity: 0;
+}
+
 </style>

@@ -9,13 +9,14 @@
     <weatherDetail :data="weather"></weatherDetail>
     
     {{ weather }}
+    {{ userId }}
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import { mapState, mapActions, mapMutations } from 'vuex'
-import state from '@/store/index.js'
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
+import store from '@/store/index.js'
 import axios from 'axios'
 import headNavBar from '@/components/headNavBar.vue'
 import weatherShown from '@/components/weatherShown.vue'
@@ -23,6 +24,7 @@ import getWeatherInfo from '@/public/weatherInfo.js'
 import slicedCalender from '@/components/slicedCalender.vue'
 import getLocalCity from '@/public/localCity'
 import weatherDetail from '@/components/weatherDetail.vue'
+import getUserInfo from '@/public/userInfo'
 
 export default {
   name: 'Home',
@@ -32,12 +34,13 @@ export default {
   },
   computed: {
     ...mapState('weather',['weather']),
-    ...mapState('location',['location'])
+    ...mapState('location',['location']),
+    ...mapGetters('user',['userId'])
   },
   components: {
     headNavBar,weatherShown,slicedCalender,weatherDetail
   },
-  state,
+  store,
   methods:{
     ...mapActions('weather',['getWeather']),
     ...mapMutations('location',['SET_LOCATION'])

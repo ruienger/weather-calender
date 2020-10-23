@@ -19,7 +19,7 @@ const routes = [
   },
   {
     path: '/user',
-    name: '用户名',
+    name: '用户',
     params: { iconClass:'icon-icon-test2' },
     component: () => import('../views/user.vue'),
     children:[

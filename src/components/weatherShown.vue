@@ -1,20 +1,26 @@
 <template>
   <div class="root">
-      
-      <div class="temp">
-        <span><img :src='file' alt=""></span>
-        <span>{{data.weather.now.temp}}</span>
-        <span> &#8451;</span>
-        
-      </div>
-      <div>
-        <span class="text">{{data.weather.now.text}}</span>
-        <div>体感温度:{{data.weather.now.feelsLike}}&#8451;</div>
-      </div>
-      <div class="apiInfo">
-        <span>上次更新时间:{{ lastUpdateTime }}</span>
-        <span>数据来源: <a :href="data.weather.fxLink">和风天气</a> </span>
-      </div>
+      <transition appear name="flow-up">
+        <div class="temp">
+          <span><img :src='file' alt=""></span>
+          <span>{{data.weather.now.temp}}</span>
+          <span> &#8451;</span>
+          
+        </div>
+      </transition>
+      <transition appear name="flow-up" delay="300" >
+        <div>
+          <span class="text">{{data.weather.now.text}}</span>
+          <div>体感温度:{{data.weather.now.feelsLike}}&#8451;</div>
+        </div>
+      </transition>
+      <transition appear name="flow-up" >
+
+        <div class="apiInfo">
+          <span>上次更新时间:{{ lastUpdateTime }}</span>
+          <span>数据来源: <a :href="data.weather.fxLink">和风天气</a> </span>
+        </div>
+      </transition>
   </div>
 </template>
 
@@ -78,5 +84,12 @@ export default {
 }
 .text{
   font-size: 27px;
+}
+.flow-up-enter-active, .flow-up-leave-active {
+  transition: all .4s;
+}
+.flow-up-enter{
+  transform: translateY(50px);
+  opacity: 0;
 }
 </style>

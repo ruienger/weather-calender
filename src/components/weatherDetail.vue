@@ -1,4 +1,5 @@
 <template>
+<transition appear name="flow-up-long-delay">
   <div class="root">
       <div class="detail-wrapper">
         <div class="wind">
@@ -17,7 +18,7 @@
           <div class="wetCircle">
             <span>{{ data.weather.now.humidity }}</span>
             
-            <div class="wetCircle-fill" :style="'top:'+ data.weather.now.humidity*1.5 + 'px'"></div>
+            <div class="wetCircle-fill" :style="'top:'+ (100 - data.weather.now.humidity)*1.5 + 'px'"></div>
           </div>
           
         </div>
@@ -31,6 +32,7 @@
         
       </div>
   </div>
+</transition>
 </template>
 
 <script>
@@ -142,5 +144,12 @@ export default {
   }100%{
     margin-left: 100%;
   }
+}
+.flow-up-long-delay-enter-active, .flow-up-long-delay-leave-active {
+  transition: all .4s .6s;
+}
+.flow-up-long-delay-enter{
+  transform: translateY(50px);
+  opacity: 0;
 }
 </style>

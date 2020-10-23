@@ -4,13 +4,17 @@
       <sideBar headIconClass="icon-icon_threeline_fill"></sideBar>
     
       <router-view class="router_view"/>
+      
   </div>
 </template>
 
 <script>
 import sideBar from '@/components/sideBar.vue'
 import getColor from '@/public/backgroundColor'
-import { mapState } from 'vuex'
+import { mapActions, mapState, Store, mapGetters, mapMutations } from 'vuex'
+import cookie from '@/public/cookie'
+import getUserInfo from '@/public/userInfo'
+import store from '@/store/index'
 
 export default {
   data(){
@@ -19,6 +23,7 @@ export default {
     }
   },
   components:{sideBar},
+  
   computed:{
     ...mapState('weather',['weather']),
     backgroundcolor(){
@@ -27,7 +32,11 @@ export default {
   },
   methods:{
     
-  }
+  },
+  created(){
+    getUserInfo()
+  },
+  store
 }
 </script>
 <style>

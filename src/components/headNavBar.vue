@@ -4,21 +4,41 @@
             <!-- 头部右边功能集 -->
             <div id="header-contentRight">
                 <ul>
+                    
                     <li v-for='item in options' :key='item.id' :title='item.title'>
                         <i :class="'iconfont '+item.iconClass"></i>
                     </li>
                     <li><i class="iconfont icon-icon-test"></i></li>
+                    <li>
+                        <el-avatar :size="size" :src="userInfo.avatar" @click="pushUser"></el-avatar>
+                    </li>
                 </ul>
             </div>
     </div>
 </template>
 <script>
 import router from "@/router/index.js";
+import { mapState } from 'vuex';
+
 export default {
     name:'headNavBar',
     props:{
         options:{},
         title:''
+    },
+    data(){
+        return {
+            size: 'medium'
+        }
+    },
+    router,
+    computed:{
+        ...mapState('user',['userInfo'])
+    },
+    methods:{
+        pushUser(){
+            this.router.push({name:'用户'})
+        }
     }
 }
 </script>
@@ -45,6 +65,8 @@ export default {
     list-style-type: none;
     transition: all 0.2s;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 #header-contentRight>ul>li:hover{
     background-color: #aaaaaa5d;
