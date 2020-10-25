@@ -36,7 +36,7 @@
                             <div class="add-note-btn" @click="showMoudal(item.fxDate)" :style="'transform: rotate('+angle+'deg)'"></div>
                         </div>
                     </div>
-                    <notes :fxDate="item.fxDate" @note-clicked="updateHandler($event,item.fxDate)"></notes>
+                    <notes :fxDate="item.fxDate" @note-clicked="updateHandler($event,item.fxDate)" @delete-clicked='deleteHandler($event)'></notes>
                     </div>
                 </tr>
                 
@@ -46,7 +46,6 @@
                 @close-clicked='hideMoudal' :fxDate="fxDate"
                 :notes="notes"
                 @ok-clicked='addOrUpdateHandler($event)'
-                @delete-clicked='deleteHandler($event)'
                 >
             </notesMoudal>
     </div>
@@ -71,7 +70,7 @@ export default {
                 content: "",
                 commentTime: 1582613734000,
                 cusId: '',
-                status: ""
+                orderId: "976"
             },
         }
     },
@@ -100,7 +99,12 @@ export default {
         },
         hideMoudal(){
             this.isShown = false
-            
+            this.notes = {
+                content: "",
+                commentTime: 1582613734000,
+                cusId: '',
+                orderId: "976"
+            }
         },
         addOrUpdateHandler(data){
             this.addOrUpdateNotes(data)
@@ -112,8 +116,8 @@ export default {
 
         },
         deleteHandler(data){
-            console.log('hello')
-            // this.deleteNotes(data)
+            // console.log('hello')
+            this.deleteNotes(data)
         }
     }
 }

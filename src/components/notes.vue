@@ -1,12 +1,13 @@
 <template>
+<transition appear name="flow-up">
   <div>
     <!-- {{ notes }} -->
     
     <div class="trigger" @click="changeTrigger"> <span>共 {{ iteratorList.length }} 条</span> <span >{{ trigger }}</span> </div>
 
       <div :style="'height: '+height+'px'" class="content">
-        <div v-for="item in iteratorList" :key="item.commentTime"  
-        :class="'item-wrapper '+isDanger(item.status)">
+        <div v-for="item in iteratorList" :key="item.id"  
+        :class="'item-wrapper '+isDanger(item.orderId)">
           <!-- {{item}} -->
           <p class="notes-time"> <span> 于 {{ time(item.commentTime) }} 添加 </span><span>{{ from(item.commentTime) }}</span></p>
           <div class="notes-content">
@@ -27,7 +28,7 @@
       </div>
     
   </div>
-  
+</transition>  
 </template>
 
 <script>
@@ -67,7 +68,7 @@ export default {
       this.height!=0?this.height=0:this.height=this.heightOffSet
     },
     isDanger(status){
-      if(status == '审核通过'){
+      if(status == '975'){
         return 'danger'
       }else{
         return null
@@ -118,5 +119,13 @@ export default {
     justify-content: space-between;
     margin-bottom: 10px;
     padding-top: 10px;
+  }
+  .flow-up-enter-active, .flow-up-leave-active {
+    transition: all .4s .3s;
+  }
+  .flow-up-delay-enter{
+    transform: translateY(50px);
+    opacity: 0;
+
   }
 </style>

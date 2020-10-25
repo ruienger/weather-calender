@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <headNavBar title="主页"></headNavBar>
+    <headNavBar title="主页" @search-clicked="handleSearch($event)"></headNavBar>
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <div class="location">{{ location }}</div>
@@ -25,6 +25,7 @@ import slicedCalender from '@/components/slicedCalender.vue'
 import getLocalCity from '@/public/localCity'
 import weatherDetail from '@/components/weatherDetail.vue'
 import getUserInfo from '@/public/userInfo'
+import getWeatherPreInfo from '@/public/weatherPre';
 
 export default {
   name: 'Home',
@@ -43,7 +44,13 @@ export default {
   store,
   methods:{
     ...mapActions('weather',['getWeather']),
-    ...mapMutations('location',['SET_LOCATION'])
+    ...mapMutations('location',['SET_LOCATION']),
+    handleSearch(data){
+      
+        this.SET_LOCATION(data)
+        getWeatherInfo(this.location)
+        getWeatherPreInfo(this.location)
+    }
   },
   created(){
     getLocalCity()

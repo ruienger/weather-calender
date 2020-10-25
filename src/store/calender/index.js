@@ -3,7 +3,8 @@ import getCalenderArr from '@/public/calenderArr'
 import getSlicedCalenderArr from '@/public/slicedCalenderArr'
 const state = {
     calenderArr:[],
-    slicedCalenderArr:[]
+    slicedCalenderArr:[],
+    calenderDate:''
 }
 const mutations = {
     SET_CALENDERARR(state,date){
@@ -13,6 +14,10 @@ const mutations = {
     SET_SLICEDCALENDERARR(state){
         state.slicedCalenderArr = getSlicedCalenderArr()
         
+    },
+    SET_CALENDERDATE(state,date){
+        state.calenderDate = date
+        state.calenderArr = getCalenderArr(state.calenderDate)
     }
 }
 const actions = {

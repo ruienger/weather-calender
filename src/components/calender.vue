@@ -7,7 +7,7 @@
                     <td  colspan="7">
                         <div class="calender-datepicker">
                             <button @click.prevent="preMonth">Pre</button>
-                            <span>{{date.getFullYear()}} 年 {{(date.getMonth()+1)}} 月</span>
+                            <span>{{calenderDate.getFullYear()}} 年 {{(calenderDate.getMonth()+1)}} 月</span>
                             <button @click.prevent="nextMonth">Next</button>
                         </div>
                     </td>
@@ -38,7 +38,13 @@
             <!-- </div> -->
 
         </table>
-        <notes :fxDate="fxDate" @note-clicked="updateHandler($event)"></notes>
+        <div>
+            <div class="add-note-btn" @click="showMoudal(fxDate)">
+                <span>添加一条备忘录</span><br>
+                <span>{{ fxDate }}</span>
+            </div>
+        </div>
+        <notes :fxDate="fxDate" @note-clicked="updateHandler($event)"  @delete-clicked='deleteHandler($event)'></notes>
         <notesMoudal v-show="isShown" class="moudal" 
                 @close-clicked='hideMoudal' :fxDate="fxDate"
                 :notes="notes"
@@ -59,7 +65,6 @@ export default {
     name:'calender',
     data(){
         return {
-            date:{},
             fxDate: moment(new Date()).format('YYYY-MM-DD'),
             isShown: false,
             notes:{
@@ -71,22 +76,24 @@ export default {
         }
     },
     computed:{
-        ...mapState('calender',['calenderArr','slicedCalenderArr'])
+        ...mapState('calender',['calenderArr','slicedCalenderArr','calenderDate'])
     },
     created(){
-        this.date = new Date()
-        this.SET_CALENDERARR(this.date)
+        this.SET_CALENDERDATE(new Date())
     },
     methods:{
-        ...mapMutations('calender',['SET_CALENDERARR','SET_SLICEDCALENDERARR']),
-        ...mapActions('notes',['addOrUpdateNotes']),
+        ...mapMutations('calender',['SET_CALENDERARR','SET_SLICEDCALENDERARR','SET_CALENDERDATE']),
+        ...mapActions('notes',['addOrUpdateNotes','deleteNotes']),
         nextMonth(){
-            this.date.setMonth(this.date.getMonth()+1)
-            this.SET_CALENDERARR(this.date)
+            console.log(this.calenderDate.setMonth(this.calenderDate.getMonth()+1))
+            this.SET_CALENDERDATE(new Date(this.calenderDate.setMonth(this.calenderDate.getMonth())))
+            // this.date.setMonth(this.date.getMonth()+1)
+            // this.SET_CALENDERARR(this.date)
         },
         preMonth(){
-            this.date.setMonth(this.date.getMonth()-1)
-            this.SET_CALENDERARR(this.date)
+            this.SET_CALENDERDATE(new Date(this.calenderDate.setMonth(this.calenderDate.getMonth()-1)))
+            // this.date.setMonth(this.date.getMonth()-1)
+            // this.SET_CALENDERARR(this.date)
         },
         setclass(date){
             let year = new Date(date).getFullYear()
@@ -118,11 +125,21 @@ export default {
             this.hideMoudal()
         },
         hideMoudal(){
-            this.isShown = !this.isShown
+            this.isShown = false
+            this.notes = {
+                content: "",
+                commentTime: 1582613734000,
+                cusId: '',
+                orderId: "976"
+            }
+        },
+        showMoudal(fxDate){
+            this.isShown = true
+            this.fxDate = fxDate
         },
         updateHandler(data){
             this.notes = data
-            this.hideMoudal()
+            this.showMoudal(moment(data.commentTime).format('YYYY-MM-DD'))
         },
         isClicked(time){
             if(moment(new Date(time)).format('YYYY-MM-DD')==this.fxDate){
@@ -130,6 +147,9 @@ export default {
             }else{
                 return 'background-image: linear-gradient(rgba(131, 167, 173, 0.698),rgba(76, 131, 163, 0.698)) ; '
             }
+        },
+        deleteHandler(data){
+            this.deleteNotes(data)
         }
     },
     props:{
@@ -141,9 +161,9 @@ export default {
 </script>
 <style scoped>
 .tags{
-    position: absolute;
-    top: 4px;
-    right: 4px;
+    position: relative;
+    top: -95%;
+    right: -85%;
 }
 .calender{
     /* width: 700; */
@@ -207,7 +227,6 @@ export default {
     line-height: 80px;
     margin: 0 auto;
     transition: all .2s;
-    position: relative;
 }
 .calender-day:hover{
     background-color: #aaa;
@@ -230,9 +249,24 @@ export default {
 .flow-up-enter-active, .flow-up-leave-active {
   transition: all .4s;
 }
-.flow-up-delay-enter{
+.flow-up-enter{
   transform: translateY(50px);
   opacity: 0;
 
 }
+.add-note-btn{
+    width: 60%;
+    margin: 40px auto;
+    height: 50px;
+    border-radius: 60px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #aaaaaa65;
+    transition: all .4s;
+}
+.add-note-btn:hover{
+    background-color: #aaaaaab4;
+}
+
 </style>

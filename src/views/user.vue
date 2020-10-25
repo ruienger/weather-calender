@@ -1,7 +1,8 @@
 <template>
   <div>
+      <headNavBar title="用户"></headNavBar>
       <login v-if="flag" @handleClick='syncCookie'></login>
-      <showInfo :userInfo='userInfo'></showInfo>
+      <showInfo :userInfo='userInfo' :userDetailInfo="userDetailInfo" v-if="!flag" @handleClick='syncCookie'></showInfo>
   </div>
 </template>
 
@@ -10,6 +11,7 @@ import cookie from '@/public/cookie'
 import getUserInfo from '@/public/userInfo'
 import login from '@/components/login'
 import showInfo from '@/components/showInfo'
+import headNavBar from '@/components/headNavBar'
 import { mapState } from 'vuex'
 // import router from '@/router/index'
 
@@ -20,10 +22,10 @@ export default {
         }
     },
     computed:{
-        ...mapState('user',['userInfo'])
+        ...mapState('user',['userInfo','userDetailInfo'])
     },
     components:{
-        login, showInfo
+        login, showInfo, headNavBar
     },
     methods:{
         syncCookie(){

@@ -1,5 +1,7 @@
 
 function getCalenderArr(date){
+    
+    // let date = new Date(data)
     const nowMonth = date.getMonth()
     const nowYear = date.getFullYear()
 

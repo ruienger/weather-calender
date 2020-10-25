@@ -8,9 +8,15 @@
                     <li v-for='item in options' :key='item.id' :title='item.title'>
                         <i :class="'iconfont '+item.iconClass"></i>
                     </li>
-                    <li><i class="iconfont icon-icon-test"></i></li>
+                    <li class="search-wrapper">
+                        <transition appear name="slide-in">
+                            <input type="text" v-model="searchInfo" v-show="isShown" :placeholder="placeholder">
+                        </transition>
+                        <i class="iconfont icon-icon-test" @click="showSearchBar"></i>
+                    </li>
                     <li>
-                        <el-avatar :size="size" :src="userInfo.avatar" @click="pushUser"></el-avatar>
+                        <router-link to="/user" class="avatar-wrapper"><el-avatar :size="size" :src="userInfo.avatar"></el-avatar></router-link>
+                        
                     </li>
                 </ul>
             </div>
@@ -24,11 +30,16 @@ export default {
     name:'headNavBar',
     props:{
         options:{},
-        title:''
+        title:'',
+        
+        
     },
     data(){
         return {
-            size: 'medium'
+            size: 'medium',
+            isShown: false,
+            searchInfo: '',
+            placeholder: ''
         }
     },
     router,
@@ -36,8 +47,24 @@ export default {
         ...mapState('user',['userInfo'])
     },
     methods:{
-        pushUser(){
-            this.router.push({name:'用户'})
+        showSearchBar(){
+            if(!this.isShown){
+                this.isShown = !this.isShown
+                if(this.title == '用户'){
+                    alert('满共就没几条信息你隔着搜啥呢')
+                }else{
+                    if(this.title == '主页'){
+                        this.placeholder = '输入完整城市名'
+                    }else{
+                        this.placeholder = '输入日期'
+                    }
+                    
+                }
+            }else{
+                this.$emit('search-clicked',this.searchInfo)
+                this.isShown = !this.isShown
+            }
+            
         }
     }
 }
@@ -61,12 +88,14 @@ export default {
     align-items: center;
 }
 #header-contentRight>ul>li{
-    width: 50px;
+    /* width: 50px; */
     list-style-type: none;
     transition: all 0.2s;
     text-align: center;
     display: flex;
     justify-content: center;
+    margin-right: 10px;
+    align-items: center;
 }
 #header-contentRight>ul>li:hover{
     background-color: #aaaaaa5d;
@@ -75,4 +104,32 @@ export default {
     font-weight: 100;
     width: 50px;
 }
+input{
+    height: 40px;
+    margin: auto 0;
+    outline: none;
+    border: 1px solid #eee;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding-left: 10px;
+}
+.search-wrapper{
+    display: flex;
+    justify-content: space-around;
+}
+.slide-in-enter-active{
+    transition: all .5s;
+    transform-origin: right;
+}
+.slide-in-enter{
+    transform: scaleX(0);
+}
+.avatar-wrapper{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+/* .slide-in-leave{
+    width: 200px;
+} */
 </style>

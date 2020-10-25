@@ -19,4 +19,4 @@ const axiosQS = axios.create({
 })
 
 
-export default { axiosQS, axios }
+export { axiosQS, axios }

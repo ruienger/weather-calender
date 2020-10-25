@@ -11,9 +11,9 @@
               <el-time-select
                 v-model="time"
                 :picker-options="{
-                    start: '08:30',
+                    start: '04:30',
                     step: '00:15',
-                    end: '18:30'
+                    end: '23:30'
                 }"
                 placeholder="选择时间">
                 </el-time-select>
@@ -26,7 +26,6 @@
                 <br><br>
                 <el-input type="textarea" v-model="notes.content"></el-input>
           </div>
-          {{fxTime}}
           <div class="footer">
               <el-button type="success" icon="el-icon-check" circle @click="handleData"></el-button>
           </div>
@@ -47,13 +46,13 @@ export default {
     data(){
         return {
             time: '',
-            state: '紧急'
+            state: false
         }
     },
     computed:{
         ...mapGetters('user',['userId']),
         status(){
-            return this.state =='紧急'?'未审核':'审核通过'
+            return this.state?'975':'976'
         },
         fxTime(){
             return moment(this.fxDate +" "+ this.time).unix()*1000
@@ -65,7 +64,7 @@ export default {
                 content: this.notes.content,
                 commentTime: this.fxTime,
                 cusId: this.userId,
-                status: this.status,
+                orderId: this.status,
             }
             if(this.notes.id){
                 data.id = this.notes.id
