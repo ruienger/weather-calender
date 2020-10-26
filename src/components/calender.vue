@@ -85,7 +85,7 @@ export default {
         ...mapMutations('calender',['SET_CALENDERARR','SET_SLICEDCALENDERARR','SET_CALENDERDATE']),
         ...mapActions('notes',['addOrUpdateNotes','deleteNotes']),
         nextMonth(){
-            this.SET_CALENDERDATE(new Date(this.calenderDate.setMonth(this.calenderDate.getMonth())))
+            this.SET_CALENDERDATE(new Date(this.calenderDate.setMonth(this.calenderDate.getMonth()+1)))
             // this.date.setMonth(this.date.getMonth()+1)
             // this.SET_CALENDERARR(this.date)
         },
