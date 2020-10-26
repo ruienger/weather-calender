@@ -44,7 +44,7 @@
                 <span>{{ fxDate }}</span>
             </div>
         </div>
-        <notes :fxDate="fxDate" @note-clicked="updateHandler($event)"  @delete-clicked='deleteHandler($event)'></notes>
+        <notes :fxDate="fxDate" @note-clicked="updateHandler($event)"  @delete-clicked='deleteHandler($event)' dangerCode="0"></notes>
         <notesMoudal v-show="isShown" class="moudal" 
                 @close-clicked='hideMoudal' :fxDate="fxDate"
                 :notes="notes"
@@ -85,7 +85,6 @@ export default {
         ...mapMutations('calender',['SET_CALENDERARR','SET_SLICEDCALENDERARR','SET_CALENDERDATE']),
         ...mapActions('notes',['addOrUpdateNotes','deleteNotes']),
         nextMonth(){
-            console.log(this.calenderDate.setMonth(this.calenderDate.getMonth()+1))
             this.SET_CALENDERDATE(new Date(this.calenderDate.setMonth(this.calenderDate.getMonth())))
             // this.date.setMonth(this.date.getMonth()+1)
             // this.SET_CALENDERARR(this.date)
@@ -166,11 +165,11 @@ export default {
     right: -85%;
 }
 .calender{
-    /* width: 700; */
+    width: 100%;
     height: 2400;
     background-image:linear-gradient(#384d642a,#384d640a) ;
     color: #eee;
-    padding: 0 1em;
+    box-sizing: border-box;
 }
 .calender>table{
     width: 70%;
@@ -181,8 +180,8 @@ export default {
     margin-bottom: 3%;
 }
 .calender td{
-    width: 80px;
-    height: 80px;
+    width: 1em;
+    height: 1em;
     text-align: center;
     font-size: 30px;
     border: none;
@@ -198,7 +197,7 @@ export default {
 
 }
 .calender-datepicker{
-    font-size: 34px;
+    font-size: 1em;
     display: flex;
     justify-content: space-around;
     border-bottom: 1px solid rgba(255, 255, 255, 0.719);
@@ -267,6 +266,33 @@ export default {
 }
 .add-note-btn:hover{
     background-color: #aaaaaab4;
+}
+@media screen and (min-width: 180px) and (max-width: 500px){
+    .calender-day{
+        height: 44px;
+        width: 44px;
+        border-radius: 22px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 44px;
+        margin: 0 auto;
+        transition: all .2s;
+    } 
+    .calender-datepicker>button{
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+    }
+    .calender td{
+        font-size: 20px;
+    }
+    .tags{
+        top: -110%;
+        right: -70%;
+    }
+    .add-note-btn{
+        width: 80%;
+    }   
 }
 
 </style>

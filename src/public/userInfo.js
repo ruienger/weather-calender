@@ -4,7 +4,7 @@ import cookie from '@/public/cookie'
 
 function getUserInfo(){
     if(!cookie.getToken()){
-        alert('用户尚未登录')
+        state.commit('user/SET_USERDETAILINFO',{})
     }else{
         axios.get('/user/info?token='+cookie.getToken(),(res)=>{})
         .then((result) => {

@@ -1,7 +1,7 @@
 <template>
 <transition name="fade">
   <div class="moudalWrapper">
-      <div class="moudal">
+      <div class="moudals">
           <div class="moudal-header">
               <div class="titile">添加备忘录</div>
               <div class="close" @click="$emit('close-clicked')"></div>
@@ -77,20 +77,20 @@ export default {
 
 <style scoped>
     .moudalWrapper{
-        width: 100%;
-        height: 100%;
+        width: calc(100% - 70px);
+        height: 400px;
         position: absolute;
         background-color: #eeeeeeee;
         transition: all .5s;
+        top: calc(100% - 450px);
         z-index: 7;
-        top: 40%;
-        left: calc(50% - 400px);
         color: #444;
-        font-size: 16px;
+        font-size: 1rem;
         padding: 0 1em 0 1em;
+        box-sizing: border-box;
+        margin: 0 auto;
     }
-    .moudal{
-        width: 800px;
+    .moudals{
         height: 400px;
         margin: 0 auto;
         border-radius: 10px;
@@ -138,8 +138,20 @@ export default {
         margin-bottom: 20px;
         padding-left: calc(100% - 60px);
     }
+    .fade-enter-active, .fade-leave-active{
+        transition: all .2s;
+    }
     .fade-enter, .fade-leave-to{
         opacity: 0;
         transform: translateX(10%);
+    }
+    @media screen and (min-width: 180px) and (max-width: 500px){
+        .moudalWrapper{
+            width: 100%;
+        }
+        .fade-enter, .fade-leave-to{
+        opacity: 0;
+        transform: translateY(10%);
+    }
     }
 </style>

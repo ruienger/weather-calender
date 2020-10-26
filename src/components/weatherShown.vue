@@ -92,4 +92,9 @@ export default {
   transform: translateY(50px);
   opacity: 0;
 }
+@media screen and (min-width: 180px) and (max-width: 500px){
+    .root{
+        width: 98%;
+    }
+}
 </style>

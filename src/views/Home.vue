@@ -7,9 +7,6 @@
     <weatherShown :data="weather"></weatherShown>
     <slicedCalender :location="location"></slicedCalender>
     <weatherDetail :data="weather"></weatherDetail>
-    
-    {{ weather }}
-    {{ userId }}
   </div>
 </template>
 
@@ -68,5 +65,6 @@ export default {
   text-align: center;
   padding-top: 1%;
   font-size: 19px;
+  padding-top: 50px;
 }
 </style>

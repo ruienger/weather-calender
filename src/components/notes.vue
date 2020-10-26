@@ -37,7 +37,8 @@ import moment from 'moment'
 export default {
   name: 'notes',
   props:{
-    fxDate: ''
+    fxDate: '',
+    dangerCode: 0
   },
   data(){
     return {
@@ -48,13 +49,21 @@ export default {
   computed:{
     ...mapState('notes',['notes']),
     iteratorList(){
-      return this.notes.list.filter((item)=>{
+      let list = this.notes.list.filter((item)=>{
         return moment(item.commentTime).format('YYYY-MM-DD') == moment(this.fxDate).format('YYYY-MM-DD')
       })
+      if(this.dangerCode == 0){
+        return list
+      }else{
+        return list.filter((item)=>{
+          return item.orderId == this.dangerCode
+        })
+      }
     },
     heightOffSet(){
       return this.iteratorList.length*140
-    }
+    },
+
   },
   methods:{
     from(date){
@@ -99,9 +108,6 @@ export default {
     height: 20px;
     padding-bottom: 5px;
     /* border-bottom: 1px solid #eee; */
-  }
-  .trigger>span:last-child{
-    margin-right: 20px;
   }
   .content{
     height: auto;

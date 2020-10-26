@@ -22,7 +22,6 @@ const mutations = {
 }
 const actions = {
     getNotes(state){
-        console.log(state)
         axios.get('/comment/findCommentByCus?cusId='+state.state.id,()=>{}).then((result) => {
             state.commit('SET_NOTES',result.data)
         }).catch((err) => {

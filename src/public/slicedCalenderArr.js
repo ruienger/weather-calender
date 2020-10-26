@@ -20,7 +20,6 @@ function getSlicedCalenderArr(){
         nowTime += 60*60*24*1000
         
     }
-    // console.log(calenderArr)
     return calenderArr
 }
 

@@ -2,7 +2,8 @@
   <div>
       <headNavBar title="用户"></headNavBar>
       <login v-if="flag" @handleClick='syncCookie'></login>
-      <showInfo :userInfo='userInfo' :userDetailInfo="userDetailInfo" v-if="!flag" @handleClick='syncCookie'></showInfo>
+  
+      <showInfo :userInfo='userInfo' :userDetailInfo="userDetailInfo" v-if="!flag" @handleClick='Logout' style="margin-top: 50px;"></showInfo>
   </div>
 </template>
 
@@ -12,8 +13,10 @@ import getUserInfo from '@/public/userInfo'
 import login from '@/components/login'
 import showInfo from '@/components/showInfo'
 import headNavBar from '@/components/headNavBar'
-import { mapState } from 'vuex'
-// import router from '@/router/index'
+import { mapMutations, mapState } from 'vuex'
+import router from '@/router/index'
+import logout from '@/public/userLogout'
+import returnDefalut from '@/public/returnDefalut'
 
 export default {
     data(){
@@ -27,17 +30,23 @@ export default {
     components:{
         login, showInfo, headNavBar
     },
+    router,
     methods:{
         syncCookie(){
             if(cookie.getToken()){
                 this.flag = false
                 getUserInfo()
-                console.log('token exits',this.flag)
-                
             }else{
-                console.log('token dont exits')
+                logout()
+                returnDefalut()
                 this.flag = true
             }
+            // router.push({ name: '主页' })
+        },
+        Logout(){
+            logout()
+            returnDefalut()
+            this.syncCookie()
         }
     },
     created(){
@@ -51,6 +60,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+div{
+    width: 100%;
+    height: 100%;
+}
 
 </style>

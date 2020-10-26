@@ -152,4 +152,23 @@ export default {
   transform: translateY(50px);
   opacity: 0;
 }
+@media screen and (min-width: 180px) and (max-width: 500px){
+  .detail-wrapper{
+    display: block;
+    width: 98%;
+    margin: 0 auto;
+    border-top: 1px double #eee;
+    padding-top: 1em;
+  }
+  .detail-wrapper>div{
+    margin-top: 1em;
+  }
+  .tag{
+    border-bottom: none;
+    text-align: start;
+  }
+  .pressure{
+    text-align: start;
+  }
+}
 </style>

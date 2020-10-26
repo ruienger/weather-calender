@@ -45,17 +45,27 @@ export default {
     padding: 0;
 }
 html,body,#app{
-    width: 100%;
+    /* width: 100%; */
     height: 100%;
+
 }
 #app{
     background-image: linear-gradient(#6ba5af91,#30444dc5);
     background-size: 100% 100%;
     transition: all 5s;
 }
+@media screen and (min-width: 500px){
+  .router_view{
+    padding-left:50px;
+}
+  
+}
 .router_view{
     height: 100%;
-    padding-left:50px;
+    width: 100%;
     overflow: scroll;
+    box-sizing: border-box;
+    padding-bottom: 50px;
 }
+
 </style>

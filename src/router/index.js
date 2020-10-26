@@ -18,6 +18,12 @@ const routes = [
     component: () => import('../views/calender.vue')
   },
   {
+    path: '/notes',
+    name: '备忘录',
+    params: { iconClass:'icon-icon-test3' },
+    component: () => import('../views/notes.vue')
+  },
+  {
     path: '/user',
     name: '用户',
     params: { iconClass:'icon-icon-test2' },
@@ -28,12 +34,6 @@ const routes = [
 
     ]
     
-  },
-  {
-    path: '/setting',
-    name: '设置',
-    params: { iconClass:'icon-icon_setting' },
-    component: () => import('../views/setting.vue')
   }
 ]
 

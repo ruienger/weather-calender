@@ -36,7 +36,8 @@
                             <div class="add-note-btn" @click="showMoudal(item.fxDate)" :style="'transform: rotate('+angle+'deg)'"></div>
                         </div>
                     </div>
-                    <notes :fxDate="item.fxDate" @note-clicked="updateHandler($event,item.fxDate)" @delete-clicked='deleteHandler($event)'></notes>
+                    <notes :fxDate="item.fxDate" @note-clicked="updateHandler($event,item.fxDate)" 
+                    @delete-clicked='deleteHandler($event)' dangerCode="0"></notes>
                     </div>
                 </tr>
                 
@@ -116,7 +117,6 @@ export default {
 
         },
         deleteHandler(data){
-            // console.log('hello')
             this.deleteNotes(data)
         }
     }
@@ -124,7 +124,7 @@ export default {
 </script>
 <style scoped>
 .calender{
-    /* width: 700; */
+    width: 100%;
     height: 2400;
 }
 .calender>table{
@@ -136,6 +136,10 @@ export default {
 }
 .calender tr{   
     border: 1px solid #5760b4ad;
+}
+.calender tr>div{
+    background-color: rgba(0, 102, 149, 0.301);
+    margin-bottom: 1em;
 }
 .daily-info-wrapper{
     border-top: 1px solid #eee;
@@ -209,5 +213,20 @@ export default {
   transform: translateY(50px);
   opacity: 0;
 }
-
+@media screen and (min-width: 180px) and (max-width: 500px){
+    .daily-info-wrapper{
+        border-top: 1px solid #eee;
+        display: block;
+    }   
+    .calender>table{
+    padding-top: 20px;
+    width: 98%;
+    height: 100%;
+    margin: 0 auto;
+    
+}
+    .root{
+        width: 98%;
+    }
+}
 </style>

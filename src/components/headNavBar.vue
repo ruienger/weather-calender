@@ -50,19 +50,29 @@ export default {
         showSearchBar(){
             if(!this.isShown){
                 this.isShown = !this.isShown
-                if(this.title == '用户'){
-                    alert('满共就没几条信息你隔着搜啥呢')
-                }else{
-                    if(this.title == '主页'){
+                switch(this.title){
+                    case '用户':
+                        alert('满共就没几条信息你隔着搜啥呢')
+                        this.isShown = !this.isShown
+                        break
+                    case '主页':
                         this.placeholder = '输入完整城市名'
-                    }else{
+                        break
+                    case '备忘录':
+                        alert('满共就没几条信息你隔着搜啥呢')
+                        this.isShown = false
+                        break
+                    case '日历':
                         this.placeholder = '输入日期'
-                    }
-                    
+                        break
                 }
             }else{
-                this.$emit('search-clicked',this.searchInfo)
+                if(this.searchInfo){
+                    this.$emit('search-clicked',this.searchInfo)
+                    
+                }
                 this.isShown = !this.isShown
+                
             }
             
         }
@@ -72,6 +82,7 @@ export default {
 <style scoped>
 .header{
     background-color: #77777766;
+    width: calc(100% - 50px);
     height: 50px;
     display: flex;
     justify-content: space-between;
@@ -79,8 +90,10 @@ export default {
     padding-left: 20px;
     font-size: 15px;
     color: #eee;
+    position: absolute;
     font-weight: bold;
     filter: blur(0.3);
+    box-sizing: border-box;
 }
 #header-contentRight>ul{
     display: flex;
@@ -132,4 +145,9 @@ input{
 /* .slide-in-leave{
     width: 200px;
 } */
+@media screen and (min-width: 180px) and (max-width: 500px){
+    .header{
+        width: 100%;
+    }
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <headNavBar title="日历" @search-clicked="handleSearch($event)"></headNavBar>
-        <calender></calender>
+        <calender style="margin-top: 50px;"></calender>
     </div>
 </template>
 <script>

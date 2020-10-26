@@ -3,15 +3,15 @@ import Cookies from 'js-cookie'
 const TokenKey = 'weather_calender_token'
 
 function getToken(){
-    return Cookies.get(TokenKey)
+    return localStorage.getItem(TokenKey)
 }
 
 function resetToken(){
-    return Cookies.remove(TokenKey)
+    return localStorage.removeItem(TokenKey)
 }
 
 function setToken(token){
-    return Cookies.set(TokenKey,token)
+    return localStorage.setItem(TokenKey,token)
 }
 
 export default { getToken, resetToken, setToken }

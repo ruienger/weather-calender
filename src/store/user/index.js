@@ -1,3 +1,7 @@
+import { axiosQS }  from "@/http/index"
+import getUserInfo from '@/public/userInfo'
+import qs from 'qs'
+
 const state = {
     userInfo:{
         id: 0, 
@@ -43,6 +47,38 @@ const mutations = {
     },
     SET_USERDETAILINFO(state,info){
         state.userDetailInfo = info
+    },
+    RETURNDEFALUT(state){
+        state.userDetailInfo = {
+            area: '(...)',
+            bankCard: '(...)',
+            bankCardPhoto: '(...)',
+            city: '(...)',
+            comment: '(...)',
+            enabled: '(...)',
+            forbiddenReason: '(...)',
+            gender: '(...)',
+            id: '(...)',
+            idCard: '(...)',
+            idcardPhotoNegative: '(...)',
+            idcardPhotoPositive: '(...)',
+            imgPhoto: '(...)',
+            lastLoginIp: '(...)',
+            lastLoginTime: '(...)',
+            money: '(...)',
+            password: '(...)',
+            province: '(...)',
+            qq: '(...)',
+            rank: '(...)',
+            realname: '(...)',
+            registerIp: '(...)',
+            registerTime: '(...)',
+            status: '(...)',
+            telephone: '(...)',
+            type: '(...)',
+            username: '(...)',
+            wxid: '(...)'
+        }
     }
     // ,
     // SET_WEATHERPRE(state,weatherPre){
@@ -50,9 +86,15 @@ const mutations = {
     // }
 }
 const actions = {
-    // getWeather({ commit },location){
-    //     commit('SET_WEATHER',{ weather: location})
-    // }
+    saveOrUpdateUserInfo({ commit },form){
+        axiosQS.post('/customer/saveOrUpdate',qs.stringify(form))
+        .then((result) => {
+            alert(result.message)
+            getUserInfo()
+        }).catch((err) => {
+            
+        });
+    }
 }
 const getters = {
     userId:(state)=>{
