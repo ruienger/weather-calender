@@ -4,6 +4,7 @@ import axios from 'axios'
 function getLocalCity(){
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition((res)=>{
+            console.log(res.coords.longitude,res.coords.latitude)
             axios({
                 url: 'https://geoapi.heweather.net/v2/city/lookup?location='+res.coords.longitude +',' + res.coords.latitude +'&range=cn&key=73c454d4a4a246a58bf705c1759a1862',
                 method: 'GET'

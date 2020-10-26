@@ -3,12 +3,12 @@
     <headNavBar title="备忘录"></headNavBar>
     
     <div class="content">
-      <el-tabs v-model="activeName">
-        <el-tab-pane label="全部" name="0"  class="tabs"></el-tab-pane>
-        <el-tab-pane label="紧急" name="976"  class="tabs"></el-tab-pane>
-        <el-tab-pane label="非紧急" name="975"  class="tabs"></el-tab-pane>
+      <el-tabs v-model="activeName" stretch>
+        <el-tab-pane label="全部" name="0"></el-tab-pane>
+        <el-tab-pane label="紧急" name="976"></el-tab-pane>
+        <el-tab-pane label="非紧急" name="975"></el-tab-pane>
       </el-tabs>
-      <div v-if="computedList.length == 0">
+      <div v-if="!notes.list.length">
         暂无备忘信息，您可能还未登录或者没有添加备忘录
       </div>
       <div v-else v-for="item in computedList" :key="item.id">
@@ -51,7 +51,7 @@ export default {
             this.hideMoudal()
         },
         hideMoudal(){
-            this.isShown = false
+            this.isShown = false 
             this.notes = {
                 content: "",
                 commentTime: 1582613734000,
@@ -104,7 +104,7 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style>
 .content{
   width: 100%;
   height: 100%;
@@ -116,13 +116,13 @@ export default {
   background-color: rgba(96, 223, 255, 0.178);
 
 }
-.tabs{
-  color: #eee !important;
-}
 .content p{
   font-size: 1.1em;
   padding-top: 1em;
   border-bottom: 1px solid #eee;
+}
+.el-tabs__item{
+  color: #eee;
 }
 @media screen and (min-width: 180px) and (max-width: 500px){
   .content{

@@ -228,5 +228,11 @@ export default {
     .root{
         width: 98%;
     }
+    .item-right{
+        margin: 2em;
+    }
+    .item-left{
+        margin: 2em;
+    }
 }
 </style>

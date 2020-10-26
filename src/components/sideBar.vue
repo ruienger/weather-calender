@@ -180,7 +180,7 @@ export default {
         height: 1.6em;
         background-color: #777777ea;
         color: #eee;
-        border-radius: .8em;
+        /* border-radius: .8em; */
     }
 }
 </style>

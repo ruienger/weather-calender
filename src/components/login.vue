@@ -3,7 +3,7 @@
 <div class="wrapper">
     
   <div class="login">
-      <p style="color: #eee; padding-bottom= 1em;font-size: 1.4em ">登录以读取您的备忘信息</p> 
+      <p style="color: #eee; padding-bottom= 1em;font-size: 1.4em;width:100%;text-align:center">登录以读取您的备忘信息</p> 
       <input type="text" :value="userFrom.username" class="username">
       <input type="password" :value="userFrom.password" class="password">
       <div><button @click.prevent="login" >登录</button></div>
