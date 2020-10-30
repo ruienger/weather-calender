@@ -121,7 +121,7 @@ input{
     height: 40px;
     margin: auto 0;
     outline: none;
-    border: 1px solid #eee;
+    border: 1px solid #ccc;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     padding-left: 10px;

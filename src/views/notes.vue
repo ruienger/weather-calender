@@ -107,13 +107,13 @@ export default {
 <style>
 .content{
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   margin-top: 50px;
   color: #eee;
   padding-bottom: 50px;
   padding: 0 1em;
   box-sizing: border-box;
-  background-color: rgba(96, 223, 255, 0.178);
+  /* background-color: rgba(96, 223, 255, 0.178); */
 
 }
 .content p{

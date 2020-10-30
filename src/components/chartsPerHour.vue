@@ -16,6 +16,7 @@ HighchartsMore(Highcharts)
 HighchartsDrilldown(Highcharts);
 Highcharts3D(Highcharts);
 export default {
+    name: 'chartsPerHour',
     props:{
       options:{}
     },
@@ -46,7 +47,6 @@ export default {
     },
     mounted(){
       this.initChart()
-      setTimeout(this.reDraw,1000)
     }
     
 }

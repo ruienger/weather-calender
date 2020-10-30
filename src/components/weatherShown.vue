@@ -77,7 +77,7 @@ export default {
     width: 20px;
     height: 20px;
     border-radius: 10px;
-    border: 1px solid #eee;
+    border: 1px solid #ddd;
 }
 .temp>span:last-child{
    font-size:40px

@@ -27,7 +27,7 @@ const routes = [
     path: '/weatherDetail',
     name: '天气质量',
     params: { iconClass:'icon-icon_cspace' },
-    component: () => import('../views/notes.vue')
+    component: () => import('../views/weather.vue')
   },
   {
     path: '/user',

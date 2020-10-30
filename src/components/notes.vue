@@ -97,6 +97,7 @@ export default {
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 0 1em;
+    color: #eee;
     
   }
   .danger{

@@ -218,7 +218,7 @@ export default {
 @media screen and (min-width: 180px) and (max-width: 500px){
     .daily-info-wrapper{
         width: 100%;
-        border-top: 1px solid #eee;
+        border-top: 1px solid #ccc;
         /* display: block; */
     }   
     .calender>table{

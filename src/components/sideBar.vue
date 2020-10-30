@@ -129,12 +129,12 @@ export default {
 }
 @media screen and (min-width: 180px) and (max-width: 500px){
     .slider{
-        width: 125% !important; 
+        width: 120% !important; 
         height: 50px;
-        background-image: linear-gradient(180deg,#ccccccca 0%,#c5c3bfca 65%,#d1d4b9ca 90%);
+        /* background-image: linear-gradient(180deg,#ccccccca 0%,#c5c3bfca 65%,#d1d4b9ca 90%); */
         top: calc(100% - 50px);
         z-index: 14;
-        transform: translate(-20%);
+        transform: translate(-16.7%);
     }   
     .slider ul{
         width: 100%;
