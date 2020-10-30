@@ -56,7 +56,10 @@ const state = {
                 cloud: "loading", 
                 uvIndex: "loading" 
             }]
-    }}
+    }},
+    weatherPerHour: {
+        hourly: []
+    }
 }
 const mutations = {
     SET_WEATHER(state,weather){
@@ -64,12 +67,28 @@ const mutations = {
     },
     SET_WEATHERPRE(state,weatherPre){
         state.weatherPre = weatherPre
+    },
+    SET_WEATHERPERHOUR(state,weatherPerHour){
+        state.weatherPerHour = weatherPerHour
     }
 }
 const actions = {
     // getWeather({ commit },location){
     //     commit('SET_WEATHER',{ weather: location})
     // }
+    getWeatherPerHour({ commit },location){
+        axios({
+            url: 'https://geoapi.heweather.net/v2/city/lookup?location='+location+'&range=cn&key=73c454d4a4a246a58bf705c1759a1862',
+            method: 'GET'
+        }).then(async (result) => {
+            axios({
+                url: 'https://devapi.qweather.com/v7/weather/24h?key=73c454d4a4a246a58bf705c1759a1862&location='+result.location[0].id,
+                method: 'GET'
+            }).then((result) => {
+                commit('SET_WEATHERPERHOUR',result)
+            })
+        })
+    }
 }
 
 export default {

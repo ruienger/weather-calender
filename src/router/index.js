@@ -14,13 +14,19 @@ const routes = [
   {
     path: '/calender',
     name: '日历',
-    params: { iconClass:'icon-icon_compile' },
+    params: { iconClass:'icon-calendar' },
     component: () => import('../views/calender.vue')
   },
   {
     path: '/notes',
     name: '备忘录',
-    params: { iconClass:'icon-icon-test3' },
+    params: { iconClass:'icon-icon_compile' },
+    component: () => import('../views/notes.vue')
+  },
+  {
+    path: '/weatherDetail',
+    name: '天气质量',
+    params: { iconClass:'icon-icon_cspace' },
     component: () => import('../views/notes.vue')
   },
   {

@@ -136,10 +136,12 @@ export default {
 }
 .calender tr{   
     border: 1px solid #5760b4ad;
+    width: 100%;
 }
 .calender tr>div{
     background-color: rgba(0, 102, 149, 0.301);
     margin-bottom: 1em;
+    width: 100%;
 }
 .daily-info-wrapper{
     border-top: 1px solid #eee;
@@ -215,8 +217,9 @@ export default {
 }
 @media screen and (min-width: 180px) and (max-width: 500px){
     .daily-info-wrapper{
+        width: 100%;
         border-top: 1px solid #eee;
-        display: block;
+        /* display: block; */
     }   
     .calender>table{
     padding-top: 20px;
@@ -225,14 +228,14 @@ export default {
     margin: 0 auto;
     
 }
+    .daily-info-wrapper>div{
+        width: auto;
+        height: 70px;
+        line-height: 50px;
+        /* transition: all 2s; */
+    }
     .root{
         width: 98%;
-    }
-    .item-right{
-        margin: 2em;
-    }
-    .item-left{
-        margin: 2em;
     }
 }
 </style>

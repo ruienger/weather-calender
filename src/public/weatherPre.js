@@ -10,7 +10,7 @@ async function getWeatherPreInfo(location){
         method: 'GET'
     }).then(async (result) => {
         await axios({
-            url: 'https://devapi.heweather.net/v7/weather/3d?key=73c454d4a4a246a58bf705c1759a1862&location='+result.location[0].id,
+            url: 'https://devapi.heweather.net/v7/weather/7d?key=73c454d4a4a246a58bf705c1759a1862&location='+result.location[0].id,
             method: 'GET'
         }).then((result) => {
             store.commit('weather/SET_WEATHERPRE',{ result })
