@@ -106,14 +106,15 @@ export default {
 </script>
 <style>
 .content{
-  width: 100%;
+  width: 80%;
   /* height: 100%; */
-  margin-top: 50px;
   color: #eee;
   padding-bottom: 50px;
   padding: 0 1em;
   box-sizing: border-box;
   /* background-color: rgba(96, 223, 255, 0.178); */
+  margin: 0 auto;
+  margin-top: 50px;
 
 }
 .content p{
@@ -127,7 +128,7 @@ export default {
 @media screen and (min-width: 180px) and (max-width: 500px){
   .content{
     padding: 0 5px;
-
+    width: 98%;
   }
 }
 </style>

@@ -148,6 +148,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 7px;
     /* border-bottom: 1px solid #eee; */
 }
 .daily-info-wrapper>div{
@@ -174,6 +175,7 @@ export default {
 .add-notes-wrapper{
     display: flex;
     justify-content: space-between;
+    margin-top: 1em;
     padding-bottom: 1em;
 }
 .add-note-btn{

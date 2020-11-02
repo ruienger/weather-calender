@@ -9,9 +9,7 @@ function logout(){
         
     })
     .then((result) => {
-        cookie.resetToken()
-        getUserInfo()
-
+        alert(result.message)
     }).catch((err) => {
         alert(err)
     });

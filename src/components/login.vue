@@ -6,7 +6,7 @@
       <p style="color: #eee; padding-bottom= 1em;font-size: 1.4em;width:100%;text-align:center">登录以读取您的备忘信息</p> 
       <input type="text" :value="userFrom.username" class="username">
       <input type="password" :value="userFrom.password" class="password">
-      <div><button @click.prevent="login" >登录</button></div>
+      <div><button @click.prevent="login" :disabled="disabled">登录</button></div>
       <div><button @click.prevent="registe" >注册</button></div>
   </div>
   <el-dialog title="个人信息" :visible.sync="isEditing" show-close>
@@ -30,7 +30,8 @@ export default {
                 password:"123321",
                 type:"customer"
             },
-            isEditing: false
+            isEditing: false,
+            disabled: false
         }
     },
     computed:{
@@ -39,8 +40,19 @@ export default {
     methods:{
         ...mapActions('user',['saveOrUpdateUserInfo']),
         login(){
-            login(this.userFrom)
-            this.$emit('handleClick')
+            new Promise((res,rej)=>{
+                this.disabled = true
+                login(this.userFrom,(tag)=>{
+                    tag?res():rej()
+                })
+            }).then((result) => {
+                this.disabled = false
+                this.$emit('handleClick')
+            }).catch((err) => {
+                this.disabled = true
+                alert('登录失败')
+            });
+            
         },
         registe(){
             this.isEditing = true

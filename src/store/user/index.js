@@ -99,6 +99,9 @@ const actions = {
 const getters = {
     userId:(state)=>{
         return state.userInfo.id
+    },
+    userLocation:(state)=>{
+        return state.userDetailInfo.city
     }
 }
 

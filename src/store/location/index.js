@@ -12,10 +12,17 @@ const mutations = {
 
 const actions = {}
 
+const getters = {
+    locate:function(state){
+        return state.location
+    }
+}
+
 export default {
     namespaced:true,
     state,
     mutations,
-    actions
+    actions,
+    getters
 
 }

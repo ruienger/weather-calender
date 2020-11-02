@@ -133,6 +133,7 @@ export default {
     }
     .content{
         padding-top: 20px;
+        color: #222;
     }
     .footer{
         margin-bottom: 20px;

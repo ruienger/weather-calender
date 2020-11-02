@@ -82,7 +82,7 @@ export default {
 <style scoped>
 .header{
     background-color: #77777766;
-    width: calc(100% - 50px);
+    width: 100%;
     height: 50px;
     display: flex;
     justify-content: space-between;
@@ -90,7 +90,6 @@ export default {
     padding-left: 20px;
     font-size: 15px;
     color: #eee;
-    position: absolute;
     font-weight: bold;
     filter: blur(0.3);
     box-sizing: border-box;
@@ -147,7 +146,7 @@ input{
 } */
 @media screen and (min-width: 180px) and (max-width: 500px){
     .header{
-        width: 100%;
+        position: absolute;
     }
 }
 </style>

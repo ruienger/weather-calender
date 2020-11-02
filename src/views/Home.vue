@@ -6,13 +6,13 @@
     ></headNavBar>
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <div class="location">{{ location }}</div>
+    <div class="location">{{ locate }}</div>
     <weatherShown :data="weather"></weatherShown>
     <chartsPerHour
       :weatherInfo="weatherPerHour.hourly"
       :options="options"
     ></chartsPerHour>
-    <slicedCalender :location="location"></slicedCalender>
+    <slicedCalender :location="locate"></slicedCalender>
     <weatherDetail :data="weather"></weatherDetail>
   </div>
 </template>
@@ -39,8 +39,8 @@ export default {
   },
   computed: {
     ...mapState("weather", ["weather", "weatherPerHour"]),
-    ...mapState("location", ["location"]),
     ...mapGetters("user", ["userId"]),
+    ...mapGetters("location", ["locate"]),
     options() {
       return {
         title: {
@@ -229,14 +229,14 @@ export default {
     ...mapMutations("location", ["SET_LOCATION"]),
     handleSearch(data) {
       this.SET_LOCATION(data);
-      getWeatherInfo(this.location);
-      getWeatherPreInfo(this.location);
+      getWeatherInfo(this.locate);
+      getWeatherPreInfo(this.locate);
     },
   },
   created() {
     getLocalCity();
-    getWeatherInfo(this.location);
-    this.getWeatherPerHour(this.location);
+    getWeatherInfo(this.locate);
+    this.getWeatherPerHour(this.locate);
   },
 };
 </script>

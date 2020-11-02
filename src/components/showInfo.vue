@@ -19,13 +19,21 @@
           
         <div class="other-info">
           <div>联系方式</div> 
-          <p>手机号: {{ userDetailInfo.telephone }}</p>
-          <p>QQ: {{ userDetailInfo.qq }}</p>
-          <p>微信: {{ userDetailInfo.wxid }}</p>
+          <p>手机号: </p>
+          <p>{{ userDetailInfo.telephone }}</p>
+          <p>QQ: </p>
+          <p>{{ userDetailInfo.qq }}</p>
+          <p>微信: </p>
+          <p>{{ userDetailInfo.wxid }}</p>
         </div>
         <div class="other-info">
             <div>所在地</div>
-          <p> {{ userDetailInfo.province }} {{ userDetailInfo.city }} {{ userDetailInfo.area }}</p>
+          <p>省: </p>
+            <p>{{ userDetailInfo.province }} </p>
+          <p>市:</p>
+            <p>{{ userDetailInfo.city }} </p>
+          <p>区县:</p>
+            <p>{{ userDetailInfo.area }}</p>
         </div>  
       </div>
       <div class="logout" @click="handelEdit">
@@ -100,13 +108,15 @@ export default {
     font-size: 2rem;
     font-weight: bold;
     box-sizing: border-box;
+    overflow: scroll;
 }
 
 .avater{
-    width: 50%;
+    width: 70%;
     min-width: 550px;
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     font-size: 2rem;
     margin: 0 auto;
     margin-bottom: 3%;
@@ -130,6 +140,10 @@ export default {
 }
 .other-info p{
     margin-top: 4%;
+}
+.other-info p:nth-child(even){
+  font-size: 1.2em;
+  color: #ddd;
 }
 .info-content{
     font-weight: normal;

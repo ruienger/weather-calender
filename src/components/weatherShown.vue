@@ -66,6 +66,7 @@ export default {
     display: flex;
     justify-content: space-between;
     font-size: 14px;
+    margin: 1em 0;
 }
 .temp{
     font-size: 5em;

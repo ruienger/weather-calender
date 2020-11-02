@@ -66,6 +66,7 @@ html,body,#app{
     overflow: scroll;
     box-sizing: border-box;
     padding-bottom: 50px;
+    font-size: .8em;
 }
 
 </style>

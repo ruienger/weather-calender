@@ -13,6 +13,7 @@ function getUserInfo(){
             axios.get('/customer/findCustomerById?id='+result.data.id)
             .then((result) => {
                 state.commit('user/SET_USERDETAILINFO',result.data)
+                state.commit('location/SET_LOCATION',state.getters['user/userLocation'].slice(0,-1))
                 state.dispatch('notes/getNotes')
             }).catch((err) => {
                 alert('在public下的userInfo里'+err)

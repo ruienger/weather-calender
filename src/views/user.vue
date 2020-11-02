@@ -1,7 +1,7 @@
 <template>
   <div>
       <headNavBar title="用户"></headNavBar>
-      <login v-if="flag" @handleClick='syncCookie'></login>
+      <login v-if="flag" @handleClick='Login'></login>
   
       <showInfo :userInfo='userInfo' :userDetailInfo="userDetailInfo" v-if="!flag" @handleClick='Logout' style="margin-top: 50px;"></showInfo>
   </div>
@@ -36,17 +36,24 @@ export default {
             if(cookie.getToken()){
                 this.flag = false
                 getUserInfo()
+                // router.push({ name: '主页' })
             }else{
-                logout()
-                returnDefalut()
+                // this.Logout()
+                // returnDefalut()
                 this.flag = true
             }
             // router.push({ name: '主页' })
         },
         Logout(){
+            cookie.resetToken()
             logout()
-            returnDefalut()
             this.syncCookie()
+            returnDefalut()
+            
+        },
+        Login(){
+            this.syncCookie()
+            
         }
     },
     created(){

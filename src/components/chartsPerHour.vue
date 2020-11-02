@@ -1,7 +1,7 @@
 <template>
 <transition appear name="flow-up">
   <div>
-    <div id="container" style="min-width:400px;min-height:300px"></div>
+    <div id="container" style="min-width:360px;min-height:270px"></div>
   </div>
 </transition>
 </template>
@@ -28,14 +28,12 @@ export default {
     },
     watch:{
       options:function(){
-        console.log('ChartsDataUpdate')
         this.reDraw()
       }
     },
     methods:{
         initChart() {
             this.chart = new Highcharts.Chart('container', this.options);
-            console.log(this.chart)
         },
         reDraw(){
           let length = this.chart.series.length
@@ -56,14 +54,14 @@ export default {
 #container{
   padding: 0 1em;
   margin: 1em 0;
-  background-color: #46637aa2;
+  background-color: #11528828;
   box-sizing: border-box;
 }
 @media screen and (min-width: 180px) and (max-width: 500px){
   #container{
     padding: 0 5px;
     margin: 5px 0;
-    background-color: #46637aa2;
+    /* background-color: #46637aa2; */
     box-sizing: border-box;
   }
 }
