@@ -10,6 +10,8 @@ import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsDrilldown from 'highcharts/modules/drilldown';
 import Highcharts3D from 'highcharts/highcharts-3d';
 import Highmaps from 'highcharts/modules/map';
+import Vant from 'vant';
+import 'vant/lib/index.css';
 
 HighchartsMore(Highcharts)
 HighchartsDrilldown(Highcharts);
@@ -18,6 +20,7 @@ Highmaps(Highcharts);
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
+Vue.use(Vant);
 moment.locale('zh-cn')
 
 new Vue({

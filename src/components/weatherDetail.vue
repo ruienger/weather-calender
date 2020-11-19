@@ -66,7 +66,7 @@ export default {
   height: 150px;
   border-radius: 75px;
   overflow: hidden;
-  border: 1px solid  rgb(90, 163, 192);
+  border: 1px solid #008891;
   position: relative;
 }
 .wind{
@@ -80,7 +80,7 @@ export default {
   width: 200px;
   left: -25px;
   transition: all 2s;
-  background-color: rgb(128, 170, 233);
+  background-image:linear-gradient(#3b738a, #008891);
   animation: wave 3s ease-in-out infinite alternate-reverse;
 }
 
@@ -102,6 +102,7 @@ export default {
 }
 .pressure{
   font-size: 19px;
+  text-align: start;
 }
 .tag{
   font-weight: bold;
@@ -153,22 +154,23 @@ export default {
   opacity: 0;
 }
 @media screen and (min-width: 180px) and (max-width: 500px){
+  .detail-wrapper>div:nth-child(2){
+    flex: 90%;
+    
+  }
   .detail-wrapper{
-    display: block;
-    width: 98%;
-    margin: 0 auto;
-    border-top: 1px double #eee;
-    padding-top: 1em;
+    flex-direction: column;
+    align-items: center;
   }
   .detail-wrapper>div{
     margin-top: 1em;
   }
   .tag{
     border-bottom: none;
-    text-align: start;
+    text-align: center;
   }
   .pressure{
-    text-align: start;
+    text-align: center;
   }
 }
 </style>

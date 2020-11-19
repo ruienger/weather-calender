@@ -3,7 +3,7 @@
       <transition appear name="flow-up">
         <div class="temp">
           <span><img :src='file' alt=""></span>
-          <span>{{data.weather.now.temp}}</span>
+          <span style="color: #fff">{{data.weather.now.temp}}</span>
           <span> &#8451;</span>
           
         </div>
@@ -11,7 +11,7 @@
       <transition appear name="flow-up" delay="300" >
         <div>
           <span class="text">{{data.weather.now.text}}</span>
-          <div>体感温度:{{data.weather.now.feelsLike}}&#8451;</div>
+          <div style="padding: .2em 0">体感温度: <span style="font-size:1.6em"> {{ data.weather.now.feelsLike}}&#8451;</span></div>
         </div>
       </transition>
       <transition appear name="flow-up" >

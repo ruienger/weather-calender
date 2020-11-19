@@ -7,11 +7,10 @@
           <div>
               <span>欢迎您: <span style="font-size:2em;"> {{ userInfo.name }}</span></span>
               <div>
-              <span>{{ userDetailInfo.gender }}</span>
-              <span>{{ userInfo.introduction }}</span>
-            </div>
+                <span>{{ userDetailInfo.gender }}</span>
+                <span>{{ userInfo.introduction }}</span>
+              </div>
           </div>
-          
       </div>
       <!-- {{userInfo}}
     {{userDetailInfo}} -->
@@ -43,10 +42,15 @@
           <p>退出登录</p>
       </div>
 
-      
-      <el-dialog title="个人信息" :visible.sync="isEditing" show-close>
-          <userMoudal @submit-clicked="updateUserInfo($event)" :userInfo="userDetailInfo"></userMoudal>
-      </el-dialog>
+      <el-drawer
+            :visible.sync="isEditing"
+            direction="btt"
+            size= '95%'
+            :show-close="false"
+        > 
+      <p style="text-align:center;color:#333;margin-bottom:10px">个人信息</p>
+          <userMoudal @submit-clicked="updateUserInfo($event)" @cancle-clicked="isEditing = false" :userInfo="userDetailInfo"></userMoudal>
+      </el-drawer>
   </div>
   
 </transition>
@@ -142,7 +146,7 @@ export default {
     margin-top: 4%;
 }
 .other-info p:nth-child(even){
-  font-size: 1.2em;
+  font-size: .9em;
   color: #ddd;
 }
 .info-content{
@@ -182,9 +186,11 @@ export default {
     min-width: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
     font-size: 1em;
     margin-bottom: 3%;
+    text-align: center;
 }
   .info-content{
     width: 90%

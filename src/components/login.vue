@@ -9,9 +9,14 @@
       <div><button @click.prevent="login" :disabled="disabled">登录</button></div>
       <div><button @click.prevent="registe" >注册</button></div>
   </div>
-  <el-dialog title="个人信息" :visible.sync="isEditing" show-close>
-          <userMoudal @submit-clicked="registeUserInfo($event)" :userInfo="userDetailInfo"></userMoudal>
-    </el-dialog>
+  <el-drawer
+        :visible.sync="isEditing"
+        direction="btt"
+        size= '95%'
+        :show-close="false"
+        > 
+          <userMoudal @submit-clicked="registeUserInfo($event)" @cancle-clicked="isEditing = false" :userInfo="userDetailInfo"></userMoudal>
+  </el-drawer>
 </div>
 </transition>
 </template>

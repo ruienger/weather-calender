@@ -17,6 +17,7 @@
                                     <img :src="'image/'+item.iconDay+'.png'" alt="">
                                     <p>{{item.textDay}}</p>
                                 </div>
+                                <p> ~ </p>
                                 <div>
                                     <img :src="'image/'+item.iconNight+'.png'" alt="">
                                     <p>{{item.textNight}}</p>
@@ -37,18 +38,25 @@
                         </div>
                     </div>
                     <notes :fxDate="item.fxDate" @note-clicked="updateHandler($event,item.fxDate)" 
-                    @delete-clicked='deleteHandler($event)' dangerCode="0"></notes>
+                    @delete-clicked='deleteHandler($event)' dangerCode="0" ></notes>
                     </div>
                 </tr>
                 
         </table>
-        
-            <notesMoudal v-show="isShown" class="moudal" 
-                @close-clicked='hideMoudal' :fxDate="fxDate"
+        <el-drawer
+            :visible.sync="isShown"
+            direction="btt"
+            size= '50%'
+            :show-close="false"
+        >       
+            <notesMoudal class="moudal" 
+                :fxDate="fxDate"
                 :notes="notes"
                 @ok-clicked='addOrUpdateHandler($event)'
                 >
             </notesMoudal>
+        </el-drawer>
+            
     </div>
 </transition>
 </template>
@@ -72,7 +80,7 @@ export default {
                 commentTime: 1582613734000,
                 cusId: '',
                 orderId: "976"
-            },
+            }
         }
     },
     computed:{
@@ -132,26 +140,29 @@ export default {
     width: 90%;
     height: 100%;
     margin: 0 auto;
-    
 }
 .calender tr{   
-    border: 1px solid #5760b4ad;
+    /* border: 1px solid #5760b4ad; */
     width: 100%;
 }
 .calender tr>div{
-    background-color: rgba(0, 102, 149, 0.301);
+    background-color: #1c2b2d66;
     margin-bottom: 1em;
     width: 100%;
+    border-radius: 1em;
+    transition: all .2s;
+}
+.calender tr>div:hover{
+    box-shadow: #1c2b2d66 0 0 5px 5px;
 }
 .daily-info-wrapper{
-    border-top: 1px solid #eee;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 7px;
-    /* border-bottom: 1px solid #eee; */
+    padding: .4em 1em;
 }
-.daily-info-wrapper>div{
+.item-middle>div{
     width: 200px;
     height: 70px;
     line-height: 50px;
@@ -168,8 +179,15 @@ export default {
     background-color: #7ae;
 
 }
+.item-left{
+    font-size: 1.4em;
+}
+.item-right{
+    font-size: 1.4em;
+    font-weight: bold;
+}
 .item-right>span{
-    font-size: 12px;
+    font-size: .7em;
     color: #ccc;
 }
 .add-notes-wrapper{
@@ -177,18 +195,20 @@ export default {
     justify-content: space-between;
     margin-top: 1em;
     padding-bottom: 1em;
+    padding: .4em 1em;
+    color: #ccc;
 }
 .add-note-btn{
     width: 20px;
     height: 20px;
     position: relative;
-    margin-right: 20px;
+    /* margin-right: 20px; */
 }
 .add-note-btn::before{
     content: '';
     width: 2px;
     height: 100%;
-    background-color: #eee;
+    background-color: #ccc;
     position: absolute;
     left: 9px;
     /* transform: rotate(90deg) */
@@ -197,7 +217,7 @@ export default {
     content: '';
     width: 100%;
     height: 2px;
-    background-color: #eee;
+    background-color: #ccc;
     position: absolute;
     top: 9px;
     
@@ -217,22 +237,25 @@ export default {
   transform: translateY(50px);
   opacity: 0;
 }
+.moudal{
+    padding: .4em 1em;
+}
 @media screen and (min-width: 180px) and (max-width: 500px){
     .daily-info-wrapper{
         width: 100%;
-        border-top: 1px solid #ccc;
-        /* display: block; */
+        padding: .4em 1em;
+        display: block;
     }   
     .calender>table{
-    padding-top: 20px;
-    width: 98%;
-    height: 100%;
-    margin: 0 auto;
+        padding-top: 20px;
+        width: 98%;
+        height: 100%;
+        margin: 0 auto;
     
-}
-    .daily-info-wrapper>div{
-        width: auto;
-        height: 70px;
+    }
+    .item-middle>div{
+        width: 150px;
+        height: 90px;
         line-height: 50px;
         /* transition: all 2s; */
     }

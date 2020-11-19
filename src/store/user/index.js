@@ -11,34 +11,34 @@ const state = {
         roles: [ "admin" ]
     },
     userDetailInfo:{
-        area: '(...)',
-        bankCard: '(...)',
-        bankCardPhoto: '(...)',
-        city: '(...)',
-        comment: '(...)',
-        enabled: '(...)',
-        forbiddenReason: '(...)',
-        gender: '(...)',
-        id: '(...)',
-        idCard: '(...)',
-        idcardPhotoNegative: '(...)',
-        idcardPhotoPositive: '(...)',
-        imgPhoto: '(...)',
-        lastLoginIp: '(...)',
-        lastLoginTime: '(...)',
-        money: '(...)',
-        password: '(...)',
-        province: '(...)',
-        qq: '(...)',
-        rank: '(...)',
-        realname: '(...)',
-        registerIp: '(...)',
-        registerTime: '(...)',
-        status: '(...)',
-        telephone: '(...)',
-        type: '(...)',
-        username: '(...)',
-        wxid: '(...)'
+        area: '',
+        bankCard: '',
+        bankCardPhoto: '',
+        city: '',
+        comment: '',
+        enabled: '',
+        forbiddenReason: '',
+        gender: '',
+        id: '',
+        idCard: '',
+        idcardPhotoNegative: '',
+        idcardPhotoPositive: '',
+        imgPhoto: '',
+        lastLoginIp: '',
+        lastLoginTime: '',
+        money: '',
+        password: '',
+        province: '',
+        qq: '',
+        rank: '',
+        realname: '',
+        registerIp: '',
+        registerTime: '',
+        status: '',
+        telephone: '',
+        type: '',
+        username: '',
+        wxid: ''
     }
 }
 const mutations = {
@@ -89,7 +89,7 @@ const actions = {
     saveOrUpdateUserInfo({ commit },form){
         axiosQS.post('/customer/saveOrUpdate',qs.stringify(form))
         .then((result) => {
-            alert(result.message)
+            alert(result.data.message)
             getUserInfo()
         }).catch((err) => {
             

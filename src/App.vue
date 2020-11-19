@@ -50,7 +50,7 @@ html,body,#app{
 
 }
 #app{
-    background-image: linear-gradient(#6ba5af91,#30444dc5);
+    background-image: linear-gradient(#00000011,#0000000f);
     background-size: 100% 100%;
     transition: all 5s;
 }

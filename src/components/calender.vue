@@ -6,9 +6,9 @@
                 <tr>
                     <td  colspan="7">
                         <div class="calender-datepicker">
-                            <button @click.prevent="preMonth">Pre</button>
+                            <button @click.prevent="preMonth" class="el-icon-arrow-left"></button>
                             <span>{{calenderDate.getFullYear()}} 年 {{(calenderDate.getMonth()+1)}} 月</span>
-                            <button @click.prevent="nextMonth">Next</button>
+                            <button @click.prevent="nextMonth" class="el-icon-arrow-right"></button>
                         </div>
                     </td>
                 </tr>
@@ -21,8 +21,8 @@
                         <td>周三</td>
                         <td>周四</td>
                         <td>周五</td>
-                        <td>周六</td>
-                        <td>周日</td>
+                        <td style="color:#fabea7">周六</td>
+                        <td style="color:#fabea7">周日</td>
                     </tr>
                     <tr v-for="item in calenderArr" :key="item.index" >
                         <td v-for="i in item" :key="i.date">
@@ -45,12 +45,19 @@
             </div>
         </div>
         <notes :fxDate="fxDate" @note-clicked="updateHandler($event)"  @delete-clicked='deleteHandler($event)' dangerCode="0"></notes>
-        <notesMoudal v-show="isShown" class="moudal" 
-                @close-clicked='hideMoudal' :fxDate="fxDate"
+        <el-drawer
+            :visible.sync="isShown"
+            direction="btt"
+            size= '50%'
+            :show-close="false"
+        >       
+            <notesMoudal class="moudal" 
+                :fxDate="fxDate"
                 :notes="notes"
                 @ok-clicked='addOrUpdateHandler($event)'
                 >
             </notesMoudal>
+        </el-drawer>
     </div>
 </transition>
 </template>
@@ -133,16 +140,23 @@ export default {
             }
         },
         showMoudal(fxDate){
+            this.notes = {
+                content: "",
+                commentTime: 1582613734000,
+                cusId: '',
+                orderId: "976"
+            }
             this.isShown = true
             this.fxDate = fxDate
         },
         updateHandler(data){
             this.notes = data
-            this.showMoudal(moment(data.commentTime).format('YYYY-MM-DD'))
+            this.isShown = true
+            this.fxDate = moment(data.commentTime).format('YYYY-MM-DD')
         },
         isClicked(time){
             if(moment(new Date(time)).format('YYYY-MM-DD')==this.fxDate){
-                return 'background-color: #333;'
+                return 'background-color: #666;'
             }else{
                 return 'background-image: linear-gradient(rgba(131, 167, 173, 0.698),rgba(76, 131, 163, 0.698)) ; '
             }
@@ -167,7 +181,6 @@ export default {
 .calender{
     width: 100%;
     height: 2400;
-    background-image:linear-gradient(#384d642a,#384d640a) ;
     color: #eee;
     box-sizing: border-box;
 }
@@ -177,13 +190,13 @@ export default {
     margin: 0 auto;
 }
 .calender>table tr{
-    margin-bottom: 3%;
+    margin-bottom: 4%;
 }
 .calender td{
     width: 1em;
     height: 1em;
     text-align: center;
-    font-size: 30px;
+    font-size: 25px;
     border: none;
 }
 .calender_in{
@@ -200,6 +213,7 @@ export default {
     font-size: 1em;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.719);
     padding: 2% 0;
 }
@@ -207,33 +221,36 @@ export default {
     width: 60px;
     height: 60px;
     border-radius: 30px;
-    background-color:  rgba(255, 255, 255, 0.719);
+    background-color:  #839b97;
     overflow: hidden;
     line-height: 50px;
     font-weight: bold;
-    color: #333;
+    color: #ddd;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.719);
+    border: 1px solid #34626c;
     outline: none;
     
 }
 .calender-day{
-    height: 80px;
-    width: 80px;
-    border-radius: 40px;
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
     font-weight: bold;
     text-align: center;
-    line-height: 80px;
+    line-height: 60px;
     margin: 0 auto;
-    transition: all .2s;
+    transition: all .4s;
 }
 .calender-day:hover{
     background-color: #aaa;
 }
+.calender>table>tbody>tr:first-child{
+    height: 4em;
+}
 @keyframes roll-page {
     0%{
         opacity: 1;
-        transform: scaleX(1);
+        translate: -100;
     }
     50%{
         opacity: 0;
@@ -268,6 +285,11 @@ export default {
     background-color: #aaaaaab4;
 }
 @media screen and (min-width: 180px) and (max-width: 500px){
+    .calender>table{
+        width: 100%;
+        height: 100%;
+        padding: .4em 1em;
+    }
     .calender-day{
         height: 44px;
         width: 44px;
@@ -276,15 +298,16 @@ export default {
         text-align: center;
         line-height: 44px;
         margin: 0 auto;
-        transition: all .2s;
+        transition: all .4s;
     } 
     .calender-datepicker>button{
         width: 40px;
         height: 40px;
         line-height: 40px;
+        font-size: .1em;
     }
     .calender td{
-        font-size: 20px;
+        font-size: 15px;
     }
     .tags{
         top: -110%;

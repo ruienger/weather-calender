@@ -47,15 +47,7 @@ export default {
           text: "24小时天气预报",
           style:{
             fontSize: "17px",
-            fontWeight: "bold",
-            color: "#eeeeee"
-          }
-        },
-        subtitle: {
-          text: "数据来源：和风天气",
-          style:{
-            fontSize: '14px',
-            fontWeight: '300',
+            fontWeight: "400",
             color: "#eeeeee"
           }
         },
@@ -65,7 +57,7 @@ export default {
             style:{
               fontSize: '11px',
               fontWeight: '300',
-              color: "#eeeeee"
+              color: "#dddddd"
             }
           },
           labels: {
@@ -75,15 +67,16 @@ export default {
             style:{
               fontSize: '9px',
               fontWeight: '300',
-              color: "#eeeeee"
+              color: "#dddddd"
             }
           },
         },
         chart: {
-          backgroundColor: "rgba(255, 255, 255, 0.0)",
+          backgroundColor: "#ffffff00",
+          borderRadius: '4em',
           style:{
             fontSize: "17px",
-            fontWeight: "bold",
+            fontWeight: "400",
             color: "#eeeeee"
           }
         },
@@ -94,7 +87,7 @@ export default {
             style:{
               fontSize: '11px',
               fontWeight: '300',
-              color: "#eeeeee"
+              color: "#dddddd"
             }
           },
           categories: this.weatherPerHour.hourly.map((i) => {
@@ -105,7 +98,6 @@ export default {
           layout: "vertical",
           align: "right",
           verticalAlign: "center",
-          
         },
         tooltip: {
           pointFormatter: function () {
@@ -135,9 +127,14 @@ export default {
             }),
             visible: true,
             type: "area",
-            color: "#3480fd",
+            color: "#32e0c4",
             marker: {
-              symbol: "diamond"
+              enabled: false,
+              states: {
+                hover: {
+                  enabled: true
+                }
+              }
             }
           },
           {
@@ -146,9 +143,15 @@ export default {
               return +i.windSpeed;
             }),
             visible: true,
-            color: "#3fe0f1",
+            color: "#c62a88",
+            type: 'line',
             marker: {
-              symbol: "triangle"
+              enabled: false,
+              states: {
+                hover: {
+                  enabled: true
+                }
+              }
             }
           },
           {
@@ -157,6 +160,15 @@ export default {
               return +i.cloud;
             }),
             visible: false,
+            type: 'line',
+            marker: {
+              enabled: false,
+              states: {
+                hover: {
+                  enabled: true
+                }
+              }
+            }
           },
           {
             name: "湿度",
@@ -165,37 +177,16 @@ export default {
               return +i.precip;
             }),
             visible: false,
-          },
-          {
-            name: "其他",
-            data: [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-            ],
-            visible: false,
-          },
+            type: 'line',
+            marker: {
+              enabled: false,
+              states: {
+                hover: {
+                  enabled: true
+                }
+              }
+            }
+          }
         ],
         responsive: {
           rules: [
@@ -245,7 +236,6 @@ export default {
 
 .home {
   color: white;
-  background-color: rgba(255, 255, 255, 0.246);
 }
 .location {
   text-align: center;

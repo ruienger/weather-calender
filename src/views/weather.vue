@@ -2,12 +2,10 @@
     <transition appear name="flow-up">
         <div>
             <headNavBar title="其他详情"></headNavBar>
-            <div class="content">
-            <h3>生活TIPS</h3>
-            <h5 style="text-align:end" @click="changeTipsList">{{trigger}}</h5>
-            <transition appear name="slide-in">
-                <div v-if="visible" class="tips-wrapper">
-                    
+            <div class="content" style="margin-top:50px">
+            <el-collapse>
+                <el-collapse-item title="生活TIPS" name="1" style="color:#eee">
+                    <div class="tips-wrapper">
                     <div v-for="item in lifeQuality.daily" :key="item.type">
                         <div>
                             <span>{{item.name}} : {{item.level}}</span>
@@ -15,12 +13,17 @@
                             (<span>{{item.category}}</span>)
                         </div>
                         <p style="color:#ddd; font-size:.9em">{{item.text}}</p>
+                        <br>
                     </div>
                 </div>
+                </el-collapse-item>
+            </el-collapse>
+            <transition appear name="slide-in">
+                
             </transition>
             <chartsPerHour :options="options"></chartsPerHour>
-            <h3>空气质量</h3>
-                    <h3>
+            <h2 style="color:#eee;text-align:center;margin-top:20px">空气质量</h2>
+                    <h3 style="color:#eee;text-align:center">
                         主要污染物:{{weatherQuality.now.primary}}
                     </h3>
             <div class="weather-quality">
@@ -73,7 +76,6 @@ export default {
                 {color: '#1989fa', percentage: 30},
                 {color: '#6faad3', percentage: 15}
             ],
-            trigger: '展开',
             visible: false
         }
     },
@@ -190,10 +192,6 @@ export default {
     },
     methods:{
         ...mapActions('weather',['getWaterPerMin','getWeatherWarning','getWeatherQuality','getLifeQuality']),
-        changeTipsList(){
-            this.trigger == '折叠'?this.trigger = '展开':this.trigger = '折叠'
-            this.visible = !this.visible
-        }
     },
     created(){
         this.getWaterPerMin(this.location)
@@ -213,11 +211,7 @@ export default {
 }
 .tips-wrapper{
     padding: 5px 0;
-    background-color: rgba(42, 84, 97, 0.315);
-}
-h3{
     color: #eee;
-    text-align: center;
 }
 .weather-quality{
     width: 80%;

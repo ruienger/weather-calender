@@ -112,7 +112,7 @@ export default {
     background-color: #ccccccea;
 }
 .router-link-exact-active label{
-    background-color: #777777ea;
+    background-color: #34626c;
     color: #eee;
     border-left: 3px solid #444;
 }
@@ -131,7 +131,7 @@ export default {
     .slider{
         width: 120% !important; 
         height: 50px;
-        /* background-image: linear-gradient(180deg,#ccccccca 0%,#c5c3bfca 65%,#d1d4b9ca 90%); */
+        background-image: linear-gradient(180deg,#cfd3ce 0%,#cfd3ce 65%,#cfd3ce 90%);
         top: calc(100% - 50px);
         z-index: 14;
         transform: translate(-16.7%);
@@ -178,7 +178,7 @@ export default {
     .router-link-exact-active label{
         width: 1.6em;
         height: 1.6em;
-        background-color: #777777ea;
+        background-color: #34626c;
         color: #eee;
         /* border-radius: .8em; */
     }
