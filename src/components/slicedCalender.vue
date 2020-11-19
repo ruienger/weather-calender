@@ -165,7 +165,6 @@ export default {
 .item-middle>div{
     width: 200px;
     height: 70px;
-    line-height: 50px;
     /* transition: all 2s; */
 }
 .calender_in{
@@ -256,8 +255,6 @@ export default {
     .item-middle>div{
         width: 150px;
         height: 90px;
-        line-height: 50px;
-        /* transition: all 2s; */
     }
     .root{
         width: 98%;
