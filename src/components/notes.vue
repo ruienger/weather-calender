@@ -12,7 +12,7 @@
             >
               <!-- {{item}} -->
               <p class="notes-time">
-                <span> 于 {{ time(item.commentTime) }} 添加 </span
+                <span> 于 {{ time(item.commentTime) }}  </span
                 ><span>{{ from(item.commentTime) }}</span>
               </p>
               <div class="notes-content">
@@ -44,15 +44,7 @@
             size= '20%'
             :show-close="false"
         > 
-      <!-- <el-dialog
-        :visible.sync="centerDialogVisible"
-        :width="dialogWidth"
-        center
-        top='80%'
-        :show-close='false'
-        custom-class='notes-dialog'
-      > -->
-        <span style="color:#333;margin-left:1em">确定要删除吗?</span>
+        <p style="color:#333;text-align:center">确定要删除吗?</p>
         <span class="dialog-footer">
           <div type="text" @click="centerDialogVisible = false">取 消</div>
           <div type="text" @click="updateHandler"
@@ -199,7 +191,7 @@ export default {
 }
 .dialog-footer{
   position: relative;
-  top: calc(100% - 60px);
+  top: calc(100% - 80px);
   display: flex;
   justify-content: space-between;
 }

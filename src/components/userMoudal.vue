@@ -124,6 +124,11 @@ button {
 }
 .demo-userInfo {
   box-sizing: border-box;
-  width: 80%;
+  width: 90%;
+}
+@media screen and (min-width: 180px) and (max-width: 500px){
+  .demo-userInfo {
+    width: 80%;
+  }
 }
 </style>

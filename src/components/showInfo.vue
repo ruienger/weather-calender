@@ -47,6 +47,7 @@
             direction="btt"
             size= '95%'
             :show-close="false"
+            style="overflow: scroll;"
         > 
       <p style="text-align:center;color:#333;margin-bottom:10px">个人信息</p>
           <userMoudal @submit-clicked="updateUserInfo($event)" @cancle-clicked="isEditing = false" :userInfo="userDetailInfo"></userMoudal>
@@ -175,6 +176,9 @@ export default {
 .logout:hover{
   opacity: 1;
 }
+.el-drawer__body{
+  overflow: auto;
+}
 @media screen and (min-width: 180px) and (max-width: 500px){
   .user-page{
     padding: 2em 5px;
@@ -197,13 +201,6 @@ export default {
   }
   .logout{
     width: 90%;
-  }
-  .el-dialog{
-    width: 100%;
-    margin: auto
-  }
-  .el-dialog__wrapper{
-    top: auto;
   }
   .avater>div{
     margin-left:0

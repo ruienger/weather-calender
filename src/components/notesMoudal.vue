@@ -87,7 +87,7 @@ export default {
         color: #444;
         font-size: 1rem;
         box-sizing: border-box;
-        padding: .5em 1em;
+        padding: 2em 8em;
     }
     .content{
         color: #222;
@@ -106,6 +106,7 @@ export default {
     @media screen and (min-width: 180px) and (max-width: 500px){
         .moudalWrapper{
             width: 100%;
+            padding: .5em 1em;
         }
     }
 </style>
